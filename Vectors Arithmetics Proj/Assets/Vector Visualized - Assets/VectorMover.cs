@@ -7,23 +7,35 @@ namespace Roundbeargames
     public class VectorMover : MonoBehaviour
     {
         [SerializeField] LineRenderer targetVector = null;
-        [SerializeField] Vector3 mousePos = new Vector3();
-        MousePosition mousePosition = null;
+        [SerializeField] MousePosition mousePosition = null;
 
         private void Start()
         {
-            mousePosition = FindObjectOfType<MousePosition>();
+            targetVector.SetPosition(1, Vector3.zero);
         }
 
         private void Update()
         {
-            mousePos = mousePosition.GetClickedMousePosition();
-            
-            if (targetVector != null)
+            if (Input.GetKey(KeyCode.Mouse0))
             {
-                Vector3 pos = new Vector3(mousePos.x, mousePos.y, 0f);
-                targetVector.SetPosition(1, pos);
+                if (targetVector != null)
+                {
+                    if (mousePosition.GetClickedPlane() != null)
+                    {
+                        if (mousePosition.GetClickedPlane().transform.root == this.transform.root)
+                        {
+                            Vector3 m = mousePosition.GetClickedMousePosition();
+                            Vector3 pos = new Vector3(m.x, m.y, 0f);
+                            targetVector.SetPosition(1, GetRelativePos(pos));
+                        }
+                    }
+                }
             }
+        }
+
+        Vector3 GetRelativePos(Vector3 worldPos)
+        {
+            return worldPos - targetVector.transform.position;
         }
     }
 }

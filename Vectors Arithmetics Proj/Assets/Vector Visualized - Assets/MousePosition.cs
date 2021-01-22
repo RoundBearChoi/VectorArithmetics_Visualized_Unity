@@ -9,6 +9,7 @@ namespace Roundbeargames
         [SerializeField] Transform redDot = null;
         [SerializeField] Vector3 clickedMousePosition = new Vector3();
         Camera cam;
+        GameObject clickedPlane = null;
 
         private void Start()
         {
@@ -26,6 +27,7 @@ namespace Roundbeargames
                     if (hit.transform.root == this.transform.root)
                     {
                         clickedMousePosition = hit.point;
+                        clickedPlane = hit.transform.gameObject;
                         redDot.position = new Vector3(hit.point.x, hit.point.y, 1f);
                     }
                 }
@@ -35,6 +37,11 @@ namespace Roundbeargames
         public Vector3 GetClickedMousePosition()
         {
             return clickedMousePosition;
+        }
+
+        public GameObject GetClickedPlane()
+        {
+            return clickedPlane;
         }
     }
 }
