@@ -24,7 +24,7 @@ namespace Roundbeargames
                 if (Physics.Raycast(ray, out hit))
                 {
                     clickedMousePosition = hit.point;
-                    redDot.position = hit.point;
+                    redDot.position = new Vector3(hit.point.x, hit.point.y, 1f);
                 }
             }
         }
