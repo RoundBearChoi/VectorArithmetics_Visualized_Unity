@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Roundbeargames
 {
-    public class MousePosition : MonoBehaviour
+    public class MouseData : MonoBehaviour
     {
         [SerializeField] Transform redDot = null;
         [SerializeField] Vector3 clickedMousePosition = new Vector3();

@@ -7,13 +7,13 @@ namespace Roundbeargames
     public class VectorMover : MonoBehaviour
     {
         LineRenderer targetVector = null;
-        MousePosition mousePosition = null;
+        MouseData mousePosition = null;
 
         private void Start()
         {
             VisualizedVector v = this.transform.root.GetComponentInChildren<VisualizedVector>();
             targetVector = v.GetComponent<LineRenderer>();
-            mousePosition = this.transform.root.GetComponentInChildren<MousePosition>();
+            mousePosition = this.transform.root.GetComponentInChildren<MouseData>();
 
             targetVector.SetPosition(1, Vector3.zero);
         }
