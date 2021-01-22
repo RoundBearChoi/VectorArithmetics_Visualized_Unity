@@ -9,6 +9,7 @@ namespace Roundbeargames
         [SerializeField] LineRenderer leftArrow = null;
         [SerializeField] LineRenderer rightArrow = null;
         [SerializeField] float ArrowLength = 0f;
+        VectorPlane vectorPlane;
 
         LineRenderer lineRenderer = null;
         Vector2 endPoint = new Vector2(0f, 0f);
@@ -16,6 +17,7 @@ namespace Roundbeargames
         private void Start()
         {
             lineRenderer = this.gameObject.GetComponent<LineRenderer>();
+            vectorPlane = this.gameObject.GetComponentInParent<VectorPlane>();
         }
 
         private void LateUpdate()
@@ -27,6 +29,14 @@ namespace Roundbeargames
 
             RotateLine(ref leftArrow, lineRenderer.GetPosition(0) - lineRenderer.GetPosition(1), 30f);
             RotateLine(ref rightArrow, lineRenderer.GetPosition(0) - lineRenderer.GetPosition(1), -30f);
+
+            lineRenderer.startColor = vectorPlane.GetColor();
+            leftArrow.startColor = vectorPlane.GetColor();
+            rightArrow.startColor = vectorPlane.GetColor();
+
+            lineRenderer.endColor = vectorPlane.GetColor();
+            leftArrow.endColor = vectorPlane.GetColor();
+            rightArrow.endColor = vectorPlane.GetColor();
         }
 
         private void RotateLine(ref LineRenderer line, Vector2 baseDirection, float angle)

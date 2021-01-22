@@ -773,3 +773,4 @@ MonoBehaviour:
   VectorLinePrefab: {fileID: 2006428526926691954, guid: 5efc8a01d4fc2a7409abf9ccb56ddf1f, type: 3}
   MousePositionPrefab: {fileID: 7649334523762798303, guid: 8a8b6b36697151e459526ae241f053c7, type: 3}
   VectorMoverPrefab: {fileID: 7716918055577548116, guid: 5eb5ade12dfe8d64a84a1b3ac16be81a, type: 3}
+  color: {r: 1, g: 0.98882127, b: 0.27897573, a: 1}
