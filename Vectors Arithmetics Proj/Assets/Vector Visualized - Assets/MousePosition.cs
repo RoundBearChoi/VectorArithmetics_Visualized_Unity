@@ -23,8 +23,11 @@ namespace Roundbeargames
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit))
                 {
-                    clickedMousePosition = hit.point;
-                    redDot.position = new Vector3(hit.point.x, hit.point.y, 1f);
+                    if (hit.transform.root == this.transform.root)
+                    {
+                        clickedMousePosition = hit.point;
+                        redDot.position = new Vector3(hit.point.x, hit.point.y, 1f);
+                    }
                 }
             }
         }
