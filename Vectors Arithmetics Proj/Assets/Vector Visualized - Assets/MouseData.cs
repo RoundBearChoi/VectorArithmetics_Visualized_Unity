@@ -28,7 +28,7 @@ namespace Roundbeargames
                     if (hit.transform.root == this.transform.root)
                     {
                         clickedMousePosition = hit.point;
-                        redDot.position = new Vector3(hit.point.x, hit.point.y, 1f);
+                        redDot.position = new Vector3(hit.point.x, hit.point.y, this.transform.position.z + 1f);
 
                         clickedPlane = hit.transform.gameObject;
                         mouseIsClicked = true;

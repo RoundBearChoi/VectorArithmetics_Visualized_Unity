@@ -12,7 +12,7 @@ namespace Roundbeargames
         VectorPlane vectorPlane;
 
         LineRenderer lineRenderer = null;
-        Vector2 endPoint = new Vector2(0f, 0f);
+        Vector3 endPoint = new Vector3(0f, 0f, 0f);
 
         private void Start()
         {
@@ -23,7 +23,7 @@ namespace Roundbeargames
         private void LateUpdate()
         {
             endPoint = lineRenderer.GetPosition(1);
-            Vector2 worldpos = new Vector2(this.transform.position.x, this.transform.position.y);
+            Vector3 worldpos = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
             leftArrow.transform.position = worldpos + endPoint;
             rightArrow.transform.position = worldpos + endPoint;
 

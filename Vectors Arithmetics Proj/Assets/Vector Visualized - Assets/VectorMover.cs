@@ -29,7 +29,7 @@ namespace Roundbeargames
                         if (mousePosition.GetClickedPlane().transform.root == this.transform.root)
                         {
                             Vector3 m = mousePosition.GetClickedMousePosition();
-                            Vector3 pos = new Vector3(m.x, m.y, 0f);
+                            Vector3 pos = new Vector3(m.x, m.y, this.transform.position.z);
                             targetVector.SetPosition(1, GetRelativePos(pos));
 
                             mousePosition.ResetMouseClick();
