@@ -20,7 +20,7 @@ namespace Roundbeargames
 
         private void Update()
         {
-            if (Input.GetKey(KeyCode.Mouse0))
+            if (mousePosition.MouseIsClicked())
             {
                 if (targetVector != null)
                 {
@@ -31,6 +31,8 @@ namespace Roundbeargames
                             Vector3 m = mousePosition.GetClickedMousePosition();
                             Vector3 pos = new Vector3(m.x, m.y, 0f);
                             targetVector.SetPosition(1, GetRelativePos(pos));
+
+                            mousePosition.ResetMouseClick();
                         }
                     }
                 }
