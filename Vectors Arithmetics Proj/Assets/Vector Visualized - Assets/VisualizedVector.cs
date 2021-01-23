@@ -23,19 +23,24 @@ namespace Roundbeargames
             }
             else
             {
-                RunVisualUpdate();
+                RenderArrow();
             }
         }
 
-        public void RunVisualUpdate()
+        public void RenderArrow()
         {
             endPoint = lineRenderer.GetPosition(1);
-            Vector3 worldpos = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
-            leftArrow.transform.position = worldpos + endPoint;
-            rightArrow.transform.position = worldpos + endPoint;
 
-            RotateLine(ref leftArrow, lineRenderer.GetPosition(0) - lineRenderer.GetPosition(1), 30f);
-            RotateLine(ref rightArrow, lineRenderer.GetPosition(0) - lineRenderer.GetPosition(1), -30f);
+            Vector3 scale = this.transform.root.transform.localScale;
+            Vector3 scaledEndPoint = new Vector3(endPoint.x * scale.x, endPoint.y * scale.y, 0f);
+
+            leftArrow.transform.position = this.transform.position + scaledEndPoint;
+            rightArrow.transform.position = this.transform.position + scaledEndPoint;
+
+            Vector2 edge = lineRenderer.GetPosition(1);
+
+            RotateLine(ref leftArrow, -edge, 30f);
+            RotateLine(ref rightArrow, -edge, -30f);
 
             lineRenderer.startColor = vectorPlane.GetColor();
             leftArrow.startColor = vectorPlane.GetColor();
@@ -46,10 +51,11 @@ namespace Roundbeargames
             rightArrow.endColor = vectorPlane.GetColor();
         }
 
-        private void RotateLine(ref LineRenderer line, Vector2 baseDirection, float angle)
+        private void RotateLine(ref LineRenderer line, Vector2 direction, float angle)
         {
             Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
-            Vector2 rotatedVec = q * baseDirection;
+
+            Vector2 rotatedVec = q * direction;
             rotatedVec.Normalize();
             rotatedVec *= ArrowLength;
 
