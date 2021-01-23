@@ -61,13 +61,7 @@ namespace Roundbeargames
                             Vector3 pos = new Vector3(clickPosition.x, clickPosition.y, this.transform.position.z);
 
                             Vector3 relativePos = pos - LINE_RENDERER(index).transform.position;
-
-                            Vector3 scale = this.transform.root.transform.localScale;
-                            Vector3 scaledPos = new Vector3(
-                                relativePos.x / scale.x,
-                                relativePos.y / scale.y,
-                                relativePos.z);
-
+                            Vector3 scaledPos = GetScaledLinePos(relativePos);
                             LINE_RENDERER(index).SetPosition(1, scaledPos);
 
                             mouseData.ResetMouseClick();
@@ -75,6 +69,23 @@ namespace Roundbeargames
                     }
                 }
             }
+        }
+
+        public void ManualSetLine(int index, Vector3 relativePos)
+        {
+            Vector3 scaledPos = GetScaledLinePos(relativePos);
+            LINE_RENDERER(index).SetPosition(1, scaledPos);
+        }
+
+        private Vector3 GetScaledLinePos(Vector3 localPos)
+        {
+            Vector3 scale = this.transform.root.transform.localScale;
+            Vector3 scaledPos = new Vector3(
+                localPos.x / scale.x,
+                localPos.y / scale.y,
+                localPos.z);
+
+            return scaledPos;
         }
     }
 }

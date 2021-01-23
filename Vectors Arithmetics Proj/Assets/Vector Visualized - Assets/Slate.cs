@@ -25,6 +25,14 @@ namespace Roundbeargames
         BackgroundLines backgroundLines = null;
         BackgroundPlane backgroundPlane = null;
 
+        public LineMover LINE_MOVER
+        {
+            get
+            {
+                return lineMover;
+            }
+        }
+
         public void CreateCommonComponents()
         {
             listVisualizedVectors.Clear();
