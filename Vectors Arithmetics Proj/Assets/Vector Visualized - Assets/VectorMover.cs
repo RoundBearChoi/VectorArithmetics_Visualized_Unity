@@ -9,18 +9,17 @@ namespace Roundbeargames
         LineRenderer targetVector = null;
         MouseData mouseData = null;
 
-        private void Start()
-        {
-            VisualizedVector v = this.transform.root.GetComponentInChildren<VisualizedVector>();
-            targetVector = v.GetComponent<LineRenderer>();
-            mouseData = this.transform.root.GetComponentInChildren<MouseData>();
-
-            targetVector.SetPosition(1, Vector3.zero);
-        }
-
         public void UpdateOnMouse()
         {
-            if (mouseData != null)
+            if (mouseData == null)
+            {
+                VisualizedVector v = this.transform.root.GetComponentInChildren<VisualizedVector>();
+                targetVector = v.GetComponent<LineRenderer>();
+                mouseData = this.transform.root.GetComponentInChildren<MouseData>();
+
+                targetVector.SetPosition(1, Vector3.zero);
+            }
+            else
             {
                 RunUpdate();
             }

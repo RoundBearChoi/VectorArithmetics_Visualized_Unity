@@ -9,17 +9,16 @@ namespace Roundbeargames
         VectorPlane vectorPlane = null;
         TMPro.TextMeshPro textMeshPro = null;
 
-        void Start()
-        {
-            vectorPlane = this.gameObject.GetComponentInParent<VectorPlane>();
-
-            textMeshPro = this.gameObject.GetComponent<TMPro.TextMeshPro>();
-            textMeshPro.text = "(0, 0)";
-        }
-
         public void UpdateText()
         {
-            if (textMeshPro != null)
+            if (textMeshPro == null)
+            {
+                vectorPlane = this.gameObject.GetComponentInParent<VectorPlane>();
+
+                textMeshPro = this.gameObject.GetComponent<TMPro.TextMeshPro>();
+                textMeshPro.text = "(0, 0)";
+            }
+            else
             {
                 textMeshPro.text = vectorPlane.GetVector().ToString();
             }

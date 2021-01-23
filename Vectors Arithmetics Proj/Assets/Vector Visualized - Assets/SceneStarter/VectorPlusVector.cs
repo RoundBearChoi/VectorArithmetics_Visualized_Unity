@@ -17,6 +17,11 @@ namespace Roundbeargames
 
             listVectorPlanes.Add(Instantiate(VectorPlanePrefab).GetComponent<VectorPlane>());
             //listVectorPlanes.Add(Instantiate(VectorPlanePrefab).GetComponent<VectorPlane>());
+
+            foreach (VectorPlane p in listVectorPlanes)
+            {
+                p.Init();
+            }
         }
 
         private void Update()

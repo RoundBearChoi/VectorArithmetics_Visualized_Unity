@@ -21,7 +21,14 @@ namespace Roundbeargames
                 lineRenderer = this.gameObject.GetComponent<LineRenderer>();
                 vectorPlane = this.gameObject.GetComponentInParent<VectorPlane>();
             }
+            else
+            {
+                RunVisualUpdate();
+            }
+        }
 
+        public void RunVisualUpdate()
+        {
             endPoint = lineRenderer.GetPosition(1);
             Vector3 worldpos = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
             leftArrow.transform.position = worldpos + endPoint;

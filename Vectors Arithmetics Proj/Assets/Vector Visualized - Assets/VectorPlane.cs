@@ -22,7 +22,7 @@ namespace Roundbeargames
         VectorMover vectorMover = null;
         GameObject backgroundPlane = null;
 
-        private void Start()
+        public void Init()
         {
             Instantiate(MousePositionPrefab, this.transform);
             Instantiate(BackgroundLinesPrefab, this.transform);
