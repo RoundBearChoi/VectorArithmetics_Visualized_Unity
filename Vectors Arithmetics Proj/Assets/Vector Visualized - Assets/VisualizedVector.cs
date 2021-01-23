@@ -48,5 +48,10 @@ namespace Roundbeargames
 
             line.SetPosition(1, rotatedVec);
         }
+
+        public Vector2 GetCurrentVector()
+        {
+            return lineRenderer.GetPosition(1) - lineRenderer.GetPosition(0);
+        }
     }
 }
