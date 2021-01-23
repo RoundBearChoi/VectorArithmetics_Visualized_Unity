@@ -14,14 +14,14 @@ namespace Roundbeargames
         LineRenderer lineRenderer = null;
         Vector3 endPoint = new Vector3(0f, 0f, 0f);
 
-        private void Start()
+        public void UpdateVisuals()
         {
-            lineRenderer = this.gameObject.GetComponent<LineRenderer>();
-            vectorPlane = this.gameObject.GetComponentInParent<VectorPlane>();
-        }
+            if (lineRenderer == null || vectorPlane == null)
+            {
+                lineRenderer = this.gameObject.GetComponent<LineRenderer>();
+                vectorPlane = this.gameObject.GetComponentInParent<VectorPlane>();
+            }
 
-        private void LateUpdate()
-        {
             endPoint = lineRenderer.GetPosition(1);
             Vector3 worldpos = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
             leftArrow.transform.position = worldpos + endPoint;
@@ -51,7 +51,14 @@ namespace Roundbeargames
 
         public Vector2 GetCurrentVector()
         {
-            return lineRenderer.GetPosition(1) - lineRenderer.GetPosition(0);
+            if (lineRenderer == null)
+            {
+                return Vector2.zero;
+            }
+            else
+            {
+                return lineRenderer.GetPosition(1) - lineRenderer.GetPosition(0);
+            }
         }
     }
 }

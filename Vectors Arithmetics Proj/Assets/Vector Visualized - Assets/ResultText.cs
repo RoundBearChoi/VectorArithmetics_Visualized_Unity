@@ -17,9 +17,12 @@ namespace Roundbeargames
             textMeshPro.text = "(0, 0)";
         }
 
-        private void Update()
+        public void UpdateText()
         {
-            textMeshPro.text = vectorPlane.GetVector().ToString();
+            if (textMeshPro != null)
+            {
+                textMeshPro.text = vectorPlane.GetVector().ToString();
+            }
         }
     }
 }

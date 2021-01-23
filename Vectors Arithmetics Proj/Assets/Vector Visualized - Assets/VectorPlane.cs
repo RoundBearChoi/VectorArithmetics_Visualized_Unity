@@ -22,11 +22,11 @@ namespace Roundbeargames
         GameObject plane = null;
         ResultText resultText = null;
         VisualizedVector visualizedVector = null;
+        VectorMover vectorMover = null;
 
         private void Start()
         {
             Instantiate(MousePositionPrefab, this.transform);
-            Instantiate(VectorMoverPrefab, this.transform);
             Instantiate(BackgroundLinesPrefab, this.transform);
 
             plane = Instantiate(PlanePrefab,
@@ -43,12 +43,20 @@ namespace Roundbeargames
                 this.transform.position + (Vector3.up * 3f),
                 Quaternion.identity, this.transform).
                 GetComponent<ResultText>();
+
+            vectorMover = Instantiate(VectorMoverPrefab,
+                this.transform).
+                GetComponent<VectorMover>();
         }
 
-        private void LateUpdate()
+        public void UpdateVector()
         {
             plane.transform.localPosition = PlanePosition;
             plane.transform.localScale = PlaneScale;
+
+            visualizedVector.UpdateVisuals();
+            vectorMover.UpdateOnMouse();
+            resultText.UpdateText();
         }
 
         public Color GetColor()

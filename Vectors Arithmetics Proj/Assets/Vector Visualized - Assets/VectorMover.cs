@@ -7,32 +7,42 @@ namespace Roundbeargames
     public class VectorMover : MonoBehaviour
     {
         LineRenderer targetVector = null;
-        MouseData mousePosition = null;
+        MouseData mouseData = null;
 
         private void Start()
         {
             VisualizedVector v = this.transform.root.GetComponentInChildren<VisualizedVector>();
             targetVector = v.GetComponent<LineRenderer>();
-            mousePosition = this.transform.root.GetComponentInChildren<MouseData>();
+            mouseData = this.transform.root.GetComponentInChildren<MouseData>();
 
             targetVector.SetPosition(1, Vector3.zero);
         }
 
-        private void Update()
+        public void UpdateOnMouse()
         {
-            if (mousePosition.MouseIsClicked())
+            if (mouseData != null)
+            {
+                RunUpdate();
+            }
+        }
+
+        private void RunUpdate()
+        {
+            mouseData.UpdateData();
+
+            if (mouseData.MouseIsClicked())
             {
                 if (targetVector != null)
                 {
-                    if (mousePosition.GetClickedPlane() != null)
+                    if (mouseData.GetClickedPlane() != null)
                     {
-                        if (mousePosition.GetClickedPlane().transform.root == this.transform.root)
+                        if (mouseData.GetClickedPlane().transform.root == this.transform.root)
                         {
-                            Vector3 m = mousePosition.GetClickedMousePosition();
+                            Vector3 m = mouseData.GetClickedMousePosition();
                             Vector3 pos = new Vector3(m.x, m.y, this.transform.position.z);
                             targetVector.SetPosition(1, GetRelativePos(pos));
 
-                            mousePosition.ResetMouseClick();
+                            mouseData.ResetMouseClick();
                         }
                     }
                 }

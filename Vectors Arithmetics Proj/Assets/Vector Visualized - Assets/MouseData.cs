@@ -12,12 +12,19 @@ namespace Roundbeargames
         GameObject clickedPlane = null;
         bool mouseIsClicked = false;
 
-        private void Start()
+        public void UpdateData()
         {
-            cam = FindObjectOfType<Camera>();
+            if (cam == null)
+            {
+                cam = FindObjectOfType<Camera>();
+            }
+            else
+            {
+                RunMouseUpdate();
+            }
         }
 
-        private void Update()
+        void RunMouseUpdate()
         {
             if (Input.GetKey(KeyCode.Mouse0))
             {
