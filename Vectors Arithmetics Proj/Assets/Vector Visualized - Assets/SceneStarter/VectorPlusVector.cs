@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Roundbeargames
 {
-    public class AddingVectors : SceneStarter
+    public class VectorPlusVector : SceneStarter
     {
         private void Start()
         {
@@ -24,6 +24,7 @@ namespace Roundbeargames
             foreach(VectorPlane p in listVectorPlanes)
             {
                 p.UpdateVector();
+                p.SetBackgroundPlane(new Vector3(0f, 0f, 5f), new Vector3(-90f, 0f, 0f));
             }
         }
     }

@@ -16,23 +16,18 @@ namespace Roundbeargames
 
         [Header("Properties")]
         [SerializeField] Color color = new Color();
-        [SerializeField] Vector3 PlanePosition = new Vector3();
-        [SerializeField] Vector3 PlaneScale = new Vector3();
 
-        GameObject plane = null;
         ResultText resultText = null;
         VisualizedVector visualizedVector = null;
         VectorMover vectorMover = null;
+        GameObject backgroundPlane = null;
 
         private void Start()
         {
             Instantiate(MousePositionPrefab, this.transform);
             Instantiate(BackgroundLinesPrefab, this.transform);
 
-            plane = Instantiate(PlanePrefab,
-                PlanePosition + this.transform.position,
-                Quaternion.Euler(-90f, 0f, 0f),
-                this.transform);
+            backgroundPlane = Instantiate(PlanePrefab, this.transform);
 
             visualizedVector = Instantiate(
                 VisualizedVectorPrefab,
@@ -51,9 +46,6 @@ namespace Roundbeargames
 
         public void UpdateVector()
         {
-            plane.transform.localPosition = PlanePosition;
-            plane.transform.localScale = PlaneScale;
-
             visualizedVector.UpdateVisuals();
             vectorMover.UpdateOnMouse();
             resultText.UpdateText();
@@ -67,6 +59,12 @@ namespace Roundbeargames
         public Vector2 GetVector()
         {
             return visualizedVector.GetCurrentVector();
+        }
+
+        public void SetBackgroundPlane(Vector3 localPosition, Vector3 localRotation)
+        {
+            backgroundPlane.transform.localPosition = localPosition;
+            backgroundPlane.transform.localRotation = Quaternion.Euler(localRotation);
         }
     }
 }
