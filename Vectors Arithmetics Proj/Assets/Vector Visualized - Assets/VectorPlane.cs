@@ -17,22 +17,29 @@ namespace Roundbeargames
         [Header("Properties")]
         [SerializeField] Color color = new Color();
 
+        [Header("Debug")]
+        [SerializeField] List<VisualizedVector> listVisualizedVectors = new List<VisualizedVector>();
         ResultText resultText = null;
-        VisualizedVector visualizedVector = null;
-        VectorMover vectorMover = null;
+        //VisualizedVector visualizedVector = null;
+        //VisualizedVector anothervis = null;
+        LineMover vectorMover = null;
         GameObject backgroundPlane = null;
 
         public void Init()
         {
+            listVisualizedVectors.Clear();
+
             Instantiate(MousePositionPrefab, this.transform);
             Instantiate(BackgroundLinesPrefab, this.transform);
 
             backgroundPlane = Instantiate(PlanePrefab, this.transform);
 
-            visualizedVector = Instantiate(
+            VisualizedVector v = Instantiate(
                 VisualizedVectorPrefab,
                 this.transform).
                 GetComponent<VisualizedVector>();
+
+            listVisualizedVectors.Add(v);
 
             resultText = Instantiate(ResultTextPrefab,
                 this.transform.position + (Vector3.up * 3f),
@@ -41,12 +48,16 @@ namespace Roundbeargames
 
             vectorMover = Instantiate(VectorMoverPrefab,
                 this.transform).
-                GetComponent<VectorMover>();
+                GetComponent<LineMover>();
         }
 
         public void UpdateVector()
         {
-            visualizedVector.UpdateVisuals();
+            foreach(VisualizedVector v in listVisualizedVectors)
+            {
+                v.UpdateVisuals();
+            }
+
             vectorMover.UpdateOnMouse();
             resultText.UpdateText();
         }
@@ -56,15 +67,20 @@ namespace Roundbeargames
             return color;
         }
 
-        public Vector2 GetVector()
+        public Vector2 GetVector(int index)
         {
-            return visualizedVector.GetCurrentVector();
+            return listVisualizedVectors[index].GetCurrentVector();
         }
 
         public void SetBackgroundPlane(Vector3 localPosition, Vector3 localRotation)
         {
             backgroundPlane.transform.localPosition = localPosition;
             backgroundPlane.transform.localRotation = Quaternion.Euler(localRotation);
+        }
+
+        public VisualizedVector GetVisualizedVector(int index)
+        {
+            return listVisualizedVectors[index];
         }
     }
 }

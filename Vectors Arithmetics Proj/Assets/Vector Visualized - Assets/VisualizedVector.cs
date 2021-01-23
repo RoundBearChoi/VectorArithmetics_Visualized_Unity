@@ -73,5 +73,10 @@ namespace Roundbeargames
                 return lineRenderer.GetPosition(1) - lineRenderer.GetPosition(0);
             }
         }
+
+        public LineRenderer GetLineRenderer()
+        {
+            return lineRenderer;
+        }
     }
 }

@@ -20,7 +20,7 @@ namespace Roundbeargames
             }
             else
             {
-                textMeshPro.text = vectorPlane.GetVector().ToString();
+                textMeshPro.text = vectorPlane.GetVector(0).ToString();
             }
         }
     }

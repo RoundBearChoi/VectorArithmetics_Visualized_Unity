@@ -4,21 +4,25 @@ using UnityEngine;
 
 namespace Roundbeargames
 {
-    public class VectorMover : MonoBehaviour
+    public class LineMover : MonoBehaviour
     {
-        LineRenderer lineRenderer = null;
+        VectorPlane vectorPlane = null;
         MouseData mouseData = null;
+
+        public LineRenderer LINE_RENDERER(int index)
+        {
+            return vectorPlane.GetVisualizedVector(index).GetLineRenderer();
+        }
 
         public void UpdateOnMouse()
         {
-            if (mouseData == null)
+            if (mouseData == null || vectorPlane == null)
             {
-                VisualizedVector v = this.transform.root.GetComponentInChildren<VisualizedVector>();
-                lineRenderer = v.GetComponent<LineRenderer>();
+                vectorPlane = this.gameObject.GetComponentInParent<VectorPlane>();
                 mouseData = this.transform.root.GetComponentInChildren<MouseData>();
 
-                lineRenderer.SetPosition(0, Vector3.zero);
-                lineRenderer.SetPosition(1, Vector3.zero);
+                LINE_RENDERER(0).SetPosition(0, Vector3.zero);
+                LINE_RENDERER(0).SetPosition(1, Vector3.zero);
             }
             else
             {
@@ -32,7 +36,7 @@ namespace Roundbeargames
 
             if (mouseData.MouseIsClicked())
             {
-                if (lineRenderer != null)
+                if (LINE_RENDERER(0) != null)
                 {
                     if (mouseData.GetClickedPlane() != null)
                     {
@@ -40,7 +44,8 @@ namespace Roundbeargames
                         {
                             Vector3 clickPosition = mouseData.GetClickedMousePosition();
                             Vector3 pos = new Vector3(clickPosition.x, clickPosition.y, this.transform.position.z);
-                            Vector3 relativePos = GetRelativePos(pos);
+
+                            Vector3 relativePos = pos - LINE_RENDERER(0).transform.position;
 
                             Vector3 scale = this.transform.root.transform.localScale;
                             Vector3 scaledPos = new Vector3(
@@ -48,18 +53,13 @@ namespace Roundbeargames
                                 relativePos.y / scale.y,
                                 relativePos.z);
 
-                            lineRenderer.SetPosition(1, scaledPos);
+                            LINE_RENDERER(0).SetPosition(1, scaledPos);
 
                             mouseData.ResetMouseClick();
                         }
                     }
                 }
             }
-        }
-
-        Vector3 GetRelativePos(Vector3 worldPos)
-        {
-            return worldPos - lineRenderer.transform.position;
         }
     }
 }
