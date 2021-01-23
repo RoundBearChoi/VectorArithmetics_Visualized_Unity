@@ -15,21 +15,21 @@ namespace Roundbeargames
         {
             listVectorPlanes.Clear();
 
-            listVectorPlanes.Add(Instantiate(VectorPlanePrefab).GetComponent<VectorPlane>());
-            //listVectorPlanes.Add(Instantiate(VectorPlanePrefab).GetComponent<VectorPlane>());
+            listVectorPlanes.Add(Instantiate(VectorPlanePrefab).GetComponent<Slate>());
+            //listVectorPlanes.Add(Instantiate(VectorPlanePrefab).GetComponent<Slate>());
 
-            foreach (VectorPlane p in listVectorPlanes)
+            foreach (Slate s in listVectorPlanes)
             {
-                p.Init();
+                s.Init();
             }
         }
 
         private void Update()
         {
-            foreach(VectorPlane p in listVectorPlanes)
+            foreach(Slate s in listVectorPlanes)
             {
-                p.UpdateVector();
-                p.SetBackgroundPlane(new Vector3(0f, 0f, 5f), new Vector3(-90f, 0f, 0f));
+                s.UpdateVector();
+                s.SetBackgroundPlane(new Vector3(0f, 0f, 5f), new Vector3(-90f, 0f, 0f));
             }
         }
     }

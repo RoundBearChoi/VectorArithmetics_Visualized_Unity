@@ -6,21 +6,25 @@ namespace Roundbeargames
 {
     public class ResultText : MonoBehaviour
     {
-        VectorPlane vectorPlane = null;
+        Slate slate = null;
         TMPro.TextMeshPro textMeshPro = null;
 
-        public void UpdateText()
+        private void InitTextField()
+        {
+            slate = this.gameObject.GetComponentInParent<Slate>();
+            textMeshPro = this.gameObject.GetComponent<TMPro.TextMeshPro>();
+            textMeshPro.text = "(0, 0)";
+        }
+
+        public void UpdateText(int index)
         {
             if (textMeshPro == null)
             {
-                vectorPlane = this.gameObject.GetComponentInParent<VectorPlane>();
-
-                textMeshPro = this.gameObject.GetComponent<TMPro.TextMeshPro>();
-                textMeshPro.text = "(0, 0)";
+                InitTextField();
             }
             else
             {
-                textMeshPro.text = vectorPlane.GetVector(0).ToString();
+                textMeshPro.text = slate.GetVector(index).ToString();
             }
         }
     }

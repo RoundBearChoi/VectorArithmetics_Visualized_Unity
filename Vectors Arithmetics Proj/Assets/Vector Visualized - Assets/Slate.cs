@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace Roundbeargames
 {
-    public class VectorPlane : MonoBehaviour
+    public class Slate : MonoBehaviour
     {
         [Header("Prefabs")]
         [SerializeField] GameObject VisualizedVectorPrefab = null;
-        [SerializeField] GameObject MousePositionPrefab = null;
-        [SerializeField] GameObject VectorMoverPrefab = null;
-        [SerializeField] GameObject PlanePrefab = null;
+        [SerializeField] GameObject MouseDataPrefab = null;
+        [SerializeField] GameObject LineMoverPrefab = null;
+        [SerializeField] GameObject BackgroundPlanePrefab = null;
         [SerializeField] GameObject BackgroundLinesPrefab = null;
         [SerializeField] GameObject ResultTextPrefab = null;
 
@@ -20,46 +20,42 @@ namespace Roundbeargames
         [Header("Debug")]
         [SerializeField] List<VisualizedVector> listVisualizedVectors = new List<VisualizedVector>();
         ResultText resultText = null;
-        //VisualizedVector visualizedVector = null;
-        //VisualizedVector anothervis = null;
-        LineMover vectorMover = null;
-        GameObject backgroundPlane = null;
+        LineMover lineMover = null;
+        MouseData mouseData = null;
+        BackgroundLines backgroundLines = null;
+        BackgroundPlane backgroundPlane = null;
 
         public void Init()
         {
             listVisualizedVectors.Clear();
 
-            Instantiate(MousePositionPrefab, this.transform);
-            Instantiate(BackgroundLinesPrefab, this.transform);
-
-            backgroundPlane = Instantiate(PlanePrefab, this.transform);
-
-            VisualizedVector v = Instantiate(
-                VisualizedVectorPrefab,
-                this.transform).
-                GetComponent<VisualizedVector>();
-
+            VisualizedVector v = InstantiateComponent<VisualizedVector>(VisualizedVectorPrefab);
             listVisualizedVectors.Add(v);
 
-            resultText = Instantiate(ResultTextPrefab,
-                this.transform.position + (Vector3.up * 3f),
-                Quaternion.identity, this.transform).
-                GetComponent<ResultText>();
+            backgroundLines = InstantiateComponent<BackgroundLines>(BackgroundLinesPrefab);
+            backgroundPlane = InstantiateComponent<BackgroundPlane>(BackgroundPlanePrefab);
+            lineMover = InstantiateComponent<LineMover>(LineMoverPrefab);
+            mouseData = InstantiateComponent<MouseData>(MouseDataPrefab);
+            resultText = InstantiateComponent<ResultText>(ResultTextPrefab);
 
-            vectorMover = Instantiate(VectorMoverPrefab,
-                this.transform).
-                GetComponent<LineMover>();
+            resultText.transform.localPosition = Vector3.up * 3f;
+        }
+
+        T InstantiateComponent<T>(GameObject prefab)
+        {
+            return Instantiate(prefab, this.transform).GetComponent<T>();
         }
 
         public void UpdateVector()
         {
             foreach(VisualizedVector v in listVisualizedVectors)
             {
-                v.UpdateVisuals();
+                v.RenderArrow();
             }
 
-            vectorMover.UpdateOnMouse();
-            resultText.UpdateText();
+            mouseData.UpdateData();
+            lineMover.UpdateOnMouse(0);
+            resultText.UpdateText(0);
         }
 
         public Color GetColor()

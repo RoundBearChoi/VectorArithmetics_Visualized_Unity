@@ -140,11 +140,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   VisualizedVectorPrefab: {fileID: 2006428526926691954, guid: 5efc8a01d4fc2a7409abf9ccb56ddf1f, type: 3}
-  MousePositionPrefab: {fileID: 7649334523762798303, guid: 8a8b6b36697151e459526ae241f053c7, type: 3}
-  VectorMoverPrefab: {fileID: 7716918055577548116, guid: 5eb5ade12dfe8d64a84a1b3ac16be81a, type: 3}
-  PlanePrefab: {fileID: 2701008764820891697, guid: 2029e8922b485e748a88f7a5022daf2e, type: 3}
+  MouseDataPrefab: {fileID: 7649334523762798303, guid: 8a8b6b36697151e459526ae241f053c7, type: 3}
+  LineMoverPrefab: {fileID: 7716918055577548116, guid: 5eb5ade12dfe8d64a84a1b3ac16be81a, type: 3}
+  BackgroundPlanePrefab: {fileID: 2701008764820891697, guid: 2029e8922b485e748a88f7a5022daf2e, type: 3}
   BackgroundLinesPrefab: {fileID: 698810452383166075, guid: 8f45f532490cf3b4ab658734e98bcfa7, type: 3}
   ResultTextPrefab: {fileID: 4661080804664070976, guid: 1f4b995588c171e49892afac37d531bb, type: 3}
   color: {r: 1, g: 0.98882127, b: 0.27897573, a: 1}
-  PlanePosition: {x: 0, y: 0, z: 3}
-  PlaneScale: {x: 1, y: 1, z: 1}
+  listVisualizedVectors: []

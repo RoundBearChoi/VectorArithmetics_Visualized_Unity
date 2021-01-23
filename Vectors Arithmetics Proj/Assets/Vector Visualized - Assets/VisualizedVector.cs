@@ -9,25 +9,25 @@ namespace Roundbeargames
         [SerializeField] LineRenderer leftArrow = null;
         [SerializeField] LineRenderer rightArrow = null;
         [SerializeField] float ArrowLength = 0f;
-        VectorPlane vectorPlane;
+        Slate slate;
 
         LineRenderer lineRenderer = null;
         Vector3 endPoint = new Vector3(0f, 0f, 0f);
 
-        public void UpdateVisuals()
+        public void RenderArrow()
         {
-            if (lineRenderer == null || vectorPlane == null)
+            if (lineRenderer == null || slate == null)
             {
                 lineRenderer = this.gameObject.GetComponent<LineRenderer>();
-                vectorPlane = this.gameObject.GetComponentInParent<VectorPlane>();
+                slate = this.gameObject.GetComponentInParent<Slate>();
             }
             else
             {
-                RenderArrow();
+                RunArrowRender();
             }
         }
 
-        public void RenderArrow()
+        public void RunArrowRender()
         {
             endPoint = lineRenderer.GetPosition(1);
 
@@ -42,13 +42,13 @@ namespace Roundbeargames
             RotateLine(ref leftArrow, -edge, 30f);
             RotateLine(ref rightArrow, -edge, -30f);
 
-            lineRenderer.startColor = vectorPlane.GetColor();
-            leftArrow.startColor = vectorPlane.GetColor();
-            rightArrow.startColor = vectorPlane.GetColor();
+            lineRenderer.startColor = slate.GetColor();
+            leftArrow.startColor = slate.GetColor();
+            rightArrow.startColor = slate.GetColor();
 
-            lineRenderer.endColor = vectorPlane.GetColor();
-            leftArrow.endColor = vectorPlane.GetColor();
-            rightArrow.endColor = vectorPlane.GetColor();
+            lineRenderer.endColor = slate.GetColor();
+            leftArrow.endColor = slate.GetColor();
+            rightArrow.endColor = slate.GetColor();
         }
 
         private void RotateLine(ref LineRenderer line, Vector2 direction, float angle)

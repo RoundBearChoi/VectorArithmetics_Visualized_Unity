@@ -6,37 +6,40 @@ namespace Roundbeargames
 {
     public class LineMover : MonoBehaviour
     {
-        VectorPlane vectorPlane = null;
+        Slate slate = null;
         MouseData mouseData = null;
 
         public LineRenderer LINE_RENDERER(int index)
         {
-            return vectorPlane.GetVisualizedVector(index).GetLineRenderer();
+            return slate.GetVisualizedVector(index).GetLineRenderer();
         }
 
-        public void UpdateOnMouse()
+        void InitMover()
         {
-            if (mouseData == null || vectorPlane == null)
-            {
-                vectorPlane = this.gameObject.GetComponentInParent<VectorPlane>();
-                mouseData = this.transform.root.GetComponentInChildren<MouseData>();
+            slate = this.gameObject.GetComponentInParent<Slate>();
+            mouseData = this.transform.root.GetComponentInChildren<MouseData>();
 
-                LINE_RENDERER(0).SetPosition(0, Vector3.zero);
-                LINE_RENDERER(0).SetPosition(1, Vector3.zero);
+            LINE_RENDERER(0).SetPosition(0, Vector3.zero);
+            LINE_RENDERER(0).SetPosition(1, Vector3.zero);
+        }
+
+        public void UpdateOnMouse(int index)
+        {
+            if (mouseData == null || slate == null)
+            {
+                InitMover();
             }
             else
             {
-                SetLine();
+                SetLineOnMouseData(index);
             }
         }
 
-        private void SetLine()
+        private void SetLineOnMouseData(int index)
         {
-            mouseData.UpdateData();
-
             if (mouseData.MouseIsClicked())
             {
-                if (LINE_RENDERER(0) != null)
+                if (LINE_RENDERER(index) != null)
                 {
                     if (mouseData.GetClickedPlane() != null)
                     {
@@ -45,7 +48,7 @@ namespace Roundbeargames
                             Vector3 clickPosition = mouseData.GetClickedMousePosition();
                             Vector3 pos = new Vector3(clickPosition.x, clickPosition.y, this.transform.position.z);
 
-                            Vector3 relativePos = pos - LINE_RENDERER(0).transform.position;
+                            Vector3 relativePos = pos - LINE_RENDERER(index).transform.position;
 
                             Vector3 scale = this.transform.root.transform.localScale;
                             Vector3 scaledPos = new Vector3(
@@ -53,7 +56,7 @@ namespace Roundbeargames
                                 relativePos.y / scale.y,
                                 relativePos.z);
 
-                            LINE_RENDERER(0).SetPosition(1, scaledPos);
+                            LINE_RENDERER(index).SetPosition(1, scaledPos);
 
                             mouseData.ResetMouseClick();
                         }

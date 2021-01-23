@@ -7,7 +7,7 @@ namespace Roundbeargames
     public abstract class SceneStarter : MonoBehaviour
     {
         [SerializeField] protected GameObject VectorPlanePrefab = null;
-        [SerializeField] protected List<VectorPlane> listVectorPlanes = new List<VectorPlane>();
+        [SerializeField] protected List<Slate> listVectorPlanes = new List<Slate>();
 
         public abstract void StartScene();
     }
