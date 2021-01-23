@@ -9,8 +9,10 @@ namespace Roundbeargames
         Slate slate = null;
         TMPro.TextMeshPro textMeshPro = null;
 
-        private void InitTextField()
+        private void InitResultText()
         {
+            Debug.Log("initializing ResultText");
+
             slate = this.gameObject.GetComponentInParent<Slate>();
             textMeshPro = this.gameObject.GetComponent<TMPro.TextMeshPro>();
             textMeshPro.text = "(0, 0)";
@@ -20,7 +22,7 @@ namespace Roundbeargames
         {
             if (textMeshPro == null)
             {
-                InitTextField();
+                InitResultText();
             }
             else
             {

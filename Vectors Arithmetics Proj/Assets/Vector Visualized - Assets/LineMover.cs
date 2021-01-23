@@ -11,23 +11,35 @@ namespace Roundbeargames
 
         public LineRenderer LINE_RENDERER(int index)
         {
-            return slate.GetVisualizedVector(index).GetLineRenderer();
+            if (slate.GetVisualizedVector(index) != null)
+            {
+                return slate.GetVisualizedVector(index).GetLineRenderer();
+            }
+            else
+            {
+                return null;
+            }
         }
 
-        void InitMover()
+        void InitLineMover()
         {
+            Debug.Log("initializing LineMover");
+
             slate = this.gameObject.GetComponentInParent<Slate>();
             mouseData = this.transform.root.GetComponentInChildren<MouseData>();
 
-            LINE_RENDERER(0).SetPosition(0, Vector3.zero);
-            LINE_RENDERER(0).SetPosition(1, Vector3.zero);
+            if (LINE_RENDERER(0) != null)
+            {
+                LINE_RENDERER(0).SetPosition(0, Vector3.zero);
+                LINE_RENDERER(0).SetPosition(1, Vector3.zero);
+            }
         }
 
         public void UpdateOnMouse(int index)
         {
             if (mouseData == null || slate == null)
             {
-                InitMover();
+                InitLineMover();
             }
             else
             {

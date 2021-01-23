@@ -20,8 +20,10 @@ namespace Roundbeargames
 
             foreach (Slate s in listVectorPlanes)
             {
-                s.Init();
+                s.CreateCommonComponents();
             }
+
+            listVectorPlanes[0].CreateVisualizedVector();
         }
 
         private void Update()

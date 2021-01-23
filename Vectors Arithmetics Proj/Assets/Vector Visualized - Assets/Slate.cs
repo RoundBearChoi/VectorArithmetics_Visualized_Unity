@@ -25,12 +25,9 @@ namespace Roundbeargames
         BackgroundLines backgroundLines = null;
         BackgroundPlane backgroundPlane = null;
 
-        public void Init()
+        public void CreateCommonComponents()
         {
             listVisualizedVectors.Clear();
-
-            VisualizedVector v = InstantiateComponent<VisualizedVector>(VisualizedVectorPrefab);
-            listVisualizedVectors.Add(v);
 
             backgroundLines = InstantiateComponent<BackgroundLines>(BackgroundLinesPrefab);
             backgroundPlane = InstantiateComponent<BackgroundPlane>(BackgroundPlanePrefab);
@@ -39,6 +36,12 @@ namespace Roundbeargames
             resultText = InstantiateComponent<ResultText>(ResultTextPrefab);
 
             resultText.transform.localPosition = Vector3.up * 3f;
+        }
+
+        public void CreateVisualizedVector()
+        {
+            VisualizedVector v = InstantiateComponent<VisualizedVector>(VisualizedVectorPrefab);
+            listVisualizedVectors.Add(v);
         }
 
         T InstantiateComponent<T>(GameObject prefab)
@@ -65,7 +68,14 @@ namespace Roundbeargames
 
         public Vector2 GetVector(int index)
         {
-            return listVisualizedVectors[index].GetCurrentVector();
+            if (listVisualizedVectors.Count > index)
+            {
+                return listVisualizedVectors[index].GetCurrentVector();
+            }
+            else
+            {
+                return Vector2.zero;
+            }
         }
 
         public void SetBackgroundPlane(Vector3 localPosition, Vector3 localRotation)
@@ -76,7 +86,14 @@ namespace Roundbeargames
 
         public VisualizedVector GetVisualizedVector(int index)
         {
-            return listVisualizedVectors[index];
+            if (listVisualizedVectors.Count > index)
+            {
+                return listVisualizedVectors[index];
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

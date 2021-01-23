@@ -14,12 +14,19 @@ namespace Roundbeargames
         LineRenderer lineRenderer = null;
         Vector3 endPoint = new Vector3(0f, 0f, 0f);
 
+        public void InitVisualizedVector()
+        {
+            Debug.Log("initializing VisualizedVector");
+
+            lineRenderer = this.gameObject.GetComponent<LineRenderer>();
+            slate = this.gameObject.GetComponentInParent<Slate>();
+        }
+
         public void RenderArrow()
         {
             if (lineRenderer == null || slate == null)
             {
-                lineRenderer = this.gameObject.GetComponent<LineRenderer>();
-                slate = this.gameObject.GetComponentInParent<Slate>();
+                InitVisualizedVector();
             }
             else
             {
