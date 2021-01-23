@@ -8,6 +8,7 @@ namespace Roundbeargames
     {
         Slate slate = null;
         TMPro.TextMeshPro textMeshPro = null;
+        Vector2 currentVector = new Vector2();
 
         private void InitResultText()
         {
@@ -26,7 +27,8 @@ namespace Roundbeargames
             }
             else
             {
-                textMeshPro.text = slate.GetVector(index).ToString();
+                currentVector = slate.GetVector(index);
+                textMeshPro.text = currentVector.ToString();
             }
         }
     }
