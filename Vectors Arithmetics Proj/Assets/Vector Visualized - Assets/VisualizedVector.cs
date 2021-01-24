@@ -44,10 +44,10 @@ namespace Roundbeargames
             leftArrow.transform.position = this.transform.position + scaledEndPoint;
             rightArrow.transform.position = this.transform.position + scaledEndPoint;
 
-            Vector2 edge = lineRenderer.GetPosition(1);
+            Vector2 vec = lineRenderer.GetPosition(0) - lineRenderer.GetPosition(1);
 
-            RotateLine(ref leftArrow, -edge, 30f);
-            RotateLine(ref rightArrow, -edge, -30f);
+            RotateLine(ref leftArrow, vec, 30f);
+            RotateLine(ref rightArrow, vec, -30f);
 
             lineRenderer.startColor = slate.GetColor();
             leftArrow.startColor = slate.GetColor();
