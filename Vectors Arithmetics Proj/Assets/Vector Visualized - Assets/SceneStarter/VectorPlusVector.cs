@@ -9,6 +9,9 @@ namespace Roundbeargames
         [SerializeField] Color ColorA = new Color();
         [SerializeField] Color ColorB = new Color();
         [SerializeField] Color ColorC = new Color();
+        [SerializeField] Material FilledLineMaterial = null;
+        [SerializeField] Material DottedLineMaterial_A = null;
+        [SerializeField] Material DottedLineMaterial_B = null;
 
         private void Start()
         {
