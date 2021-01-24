@@ -37,6 +37,7 @@ namespace Roundbeargames
             listSlates[1].CreateVisualizedVector();
             listSlates[2].CreateVisualizedVector();
             listSlates[2].CreateVisualizedVector();
+            listSlates[2].CreateVisualizedVector();
         }
 
         private void Update()
@@ -46,19 +47,24 @@ namespace Roundbeargames
                 s.UpdateVector();
             }
 
-            // vector A
+            // result: vector A
             listSlates[2].LINE_MOVER.ManualSetLine(0, 1, listSlates[0].GetVector(0));
 
-            // vector B
+            // result: vector B
             listSlates[2].LINE_MOVER.ManualSetLine(1, 0, listSlates[0].GetVector(0));
-
-            // vector A + B
             listSlates[2].LINE_MOVER.ManualSetLine(1, 1, listSlates[0].GetVector(0) + listSlates[1].GetVector(0));
+
+            // result: vector C
+            Vector2 resultVec = listSlates[0].GetVector(0) + listSlates[1].GetVector(0);
+            listSlates[2].LINE_MOVER.ManualSetLine(2, 1, resultVec);
 
             SetLineColor(listSlates[0], 0, ColorA);
             SetLineColor(listSlates[1], 0, ColorB);
             SetLineColor(listSlates[2], 0, ColorA);
             SetLineColor(listSlates[2], 1, ColorB);
+            SetLineColor(listSlates[2], 2, ColorC);
+
+            listSlates[2].RESULT_TEXT.SetText(resultVec);
         }
 
         void SetLineColor(Slate slate, int vectorIndex, Color color)

@@ -30,6 +30,14 @@ namespace Roundbeargames
             }
         }
 
+        public ResultText RESULT_TEXT
+        {
+            get
+            {
+                return resultText;
+            }
+        }
+
         public void CreateCommonComponents()
         {
             listVisualizedVectors.Clear();

@@ -31,5 +31,10 @@ namespace Roundbeargames
                 textMeshPro.text = currentVector.ToString();
             }
         }
+
+        public void SetText(Vector2 vec)
+        {
+            textMeshPro.text = vec.ToString();
+        }
     }
 }
