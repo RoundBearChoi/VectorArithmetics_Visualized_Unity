@@ -38,6 +38,14 @@ namespace Roundbeargames
             }
         }
 
+        public BackgroundPlane BACKGROUND_PLANE
+        {
+            get
+            {
+                return backgroundPlane;
+            }
+        }
+
         public void CreateCommonComponents()
         {
             listVisualizedVectors.Clear();
@@ -48,7 +56,7 @@ namespace Roundbeargames
             mouseData = InstantiateComponent<MouseData>(MouseDataPrefab);
             resultText = InstantiateComponent<ResultText>(ResultTextPrefab);
 
-            resultText.transform.localPosition = Vector3.up * 3f;
+            resultText.transform.localPosition = Vector3.up * 2.5f;
         }
 
         public void CreateVisualizedVector()

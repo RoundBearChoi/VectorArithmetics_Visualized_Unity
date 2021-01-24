@@ -29,15 +29,23 @@ namespace Roundbeargames
                 s.SetBackgroundPlane(new Vector3(0f, 0f, 5f), new Vector3(-90f, 0f, 0f));
             }
 
-            listSlates[0].transform.position = new Vector3(-5f, 2f, 0f);
-            listSlates[1].transform.position = new Vector3(5f, 2f, 0f);
-            listSlates[2].transform.position = new Vector3(0, -3f, 0f);
+            listSlates[0].transform.position = new Vector3(-3f - 1f, 0.75f, 0f);
+            listSlates[1].transform.position = new Vector3(3f - 1f, 0.75f, 0f);
+            listSlates[2].transform.position = new Vector3(0 - 1f, -4f, 0f);
 
             listSlates[0].CreateVisualizedVector();
             listSlates[1].CreateVisualizedVector();
             listSlates[2].CreateVisualizedVector();
             listSlates[2].CreateVisualizedVector();
             listSlates[2].CreateVisualizedVector();
+
+            listSlates[0].BACKGROUND_PLANE.transform.localScale = new Vector3(0.425f, 1f, 0.4f);
+            listSlates[1].BACKGROUND_PLANE.transform.localScale = new Vector3(0.425f, 1f, 0.4f);
+            listSlates[2].BACKGROUND_PLANE.transform.localScale = new Vector3(0.425f, 1f, 0.4f);
+
+            listSlates[0].BACKGROUND_PLANE.transform.localPosition = new Vector3(0.925f, 0.95f, 0f);
+            listSlates[1].BACKGROUND_PLANE.transform.localPosition = new Vector3(0.925f, 0.95f, 0f);
+            listSlates[2].BACKGROUND_PLANE.transform.localPosition = new Vector3(0.925f, 0.95f, 0f);
         }
 
         private void Update()
