@@ -14,9 +14,6 @@ namespace Roundbeargames
         [SerializeField] GameObject BackgroundLinesPrefab = null;
         [SerializeField] GameObject ResultTextPrefab = null;
 
-        [Header("Properties")]
-        [SerializeField] Color color = new Color();
-
         [Header("Debug")]
         [SerializeField] List<VisualizedVector> listVisualizedVectors = new List<VisualizedVector>();
         ResultText resultText = null;
@@ -67,11 +64,6 @@ namespace Roundbeargames
             mouseData.UpdateData();
             lineMover.UpdateOnMouse(0);
             resultText.UpdateText(0);
-        }
-
-        public Color GetColor()
-        {
-            return color;
         }
 
         public Vector2 GetVector(int index)

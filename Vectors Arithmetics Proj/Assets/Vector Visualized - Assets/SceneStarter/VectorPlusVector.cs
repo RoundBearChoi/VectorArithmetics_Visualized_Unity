@@ -6,6 +6,10 @@ namespace Roundbeargames
 {
     public class VectorPlusVector : SceneStarter
     {
+        [SerializeField] Color ColorA = new Color();
+        [SerializeField] Color ColorB = new Color();
+        [SerializeField] Color ColorC = new Color();
+
         private void Start()
         {
             StartScene();
@@ -42,8 +46,29 @@ namespace Roundbeargames
                 s.UpdateVector();
             }
 
-            listSlates[2].LINE_MOVER.ManualSetLine(0, listSlates[0].GetVector(0));
-            listSlates[2].LINE_MOVER.ManualSetLine(1, listSlates[1].GetVector(0));
+            // vector A
+            listSlates[2].LINE_MOVER.ManualSetLine(0, 1, listSlates[0].GetVector(0));
+
+            // vector B
+            listSlates[2].LINE_MOVER.ManualSetLine(1, 0, listSlates[0].GetVector(0));
+
+            // vector A + B
+            listSlates[2].LINE_MOVER.ManualSetLine(1, 1, listSlates[0].GetVector(0) + listSlates[1].GetVector(0));
+
+            SetLineColor(listSlates[0], 0, ColorA);
+            SetLineColor(listSlates[1], 0, ColorB);
+            SetLineColor(listSlates[2], 0, ColorA);
+            SetLineColor(listSlates[2], 1, ColorB);
+        }
+
+        void SetLineColor(Slate slate, int vectorIndex, Color color)
+        {
+            VisualizedVector targetVec = slate.GetVisualizedVector(vectorIndex);
+
+            if (targetVec != null)
+            {
+                targetVec.SetColor(color);
+            }
         }
     }
 }

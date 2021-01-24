@@ -48,14 +48,17 @@ namespace Roundbeargames
 
             RotateLine(ref leftArrow, vec, 30f);
             RotateLine(ref rightArrow, vec, -30f);
+        }
 
-            lineRenderer.startColor = slate.GetColor();
-            leftArrow.startColor = slate.GetColor();
-            rightArrow.startColor = slate.GetColor();
+        public void SetColor(Color color)
+        {
+            lineRenderer.startColor = color;
+            leftArrow.startColor = color;
+            rightArrow.startColor = color;
 
-            lineRenderer.endColor = slate.GetColor();
-            leftArrow.endColor = slate.GetColor();
-            rightArrow.endColor = slate.GetColor();
+            lineRenderer.endColor = color;
+            leftArrow.endColor = color;
+            rightArrow.endColor = color;
         }
 
         private void RotateLine(ref LineRenderer line, Vector2 direction, float angle)

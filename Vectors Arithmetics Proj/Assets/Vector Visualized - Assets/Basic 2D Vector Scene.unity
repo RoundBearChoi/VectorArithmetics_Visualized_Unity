@@ -153,7 +153,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   VectorPlanePrefab: {fileID: 6644992088181616525, guid: d759c8ce564bfb249b867c2cf8f75f4e, type: 3}
-  visualizedVectorsList: []
+  listSlates: []
+  ColorA: {r: 0.61239594, g: 1, b: 0.60916436, a: 1}
+  ColorB: {r: 0.92053914, g: 1, b: 0.47708893, a: 1}
+  ColorC: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &752101842
 Transform:
   m_ObjectHideFlags: 0

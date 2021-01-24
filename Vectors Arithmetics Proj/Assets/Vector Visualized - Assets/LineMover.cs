@@ -71,10 +71,10 @@ namespace Roundbeargames
             }
         }
 
-        public void ManualSetLine(int index, Vector3 relativePos)
+        public void ManualSetLine(int vectorIndex, int lineIndex, Vector3 relativePos)
         {
             Vector3 scaledPos = GetScaledLinePos(relativePos);
-            LINE_RENDERER(index).SetPosition(1, scaledPos);
+            LINE_RENDERER(vectorIndex).SetPosition(lineIndex, scaledPos);
         }
 
         private Vector3 GetScaledLinePos(Vector3 localPos)
