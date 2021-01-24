@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 6644992088181616529}
   - component: {fileID: 5815297452742005910}
   m_Layer: 0
-  m_Name: VectorPlane
+  m_Name: Slate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -145,5 +145,5 @@ MonoBehaviour:
   BackgroundPlanePrefab: {fileID: 2701008764820891697, guid: 2029e8922b485e748a88f7a5022daf2e, type: 3}
   BackgroundLinesPrefab: {fileID: 698810452383166075, guid: 8f45f532490cf3b4ab658734e98bcfa7, type: 3}
   ResultTextPrefab: {fileID: 4661080804664070976, guid: 1f4b995588c171e49892afac37d531bb, type: 3}
-  color: {r: 1, g: 0.98882127, b: 0.27897573, a: 1}
+  TitleTextPrefab: {fileID: 5157634451969013311, guid: f634c750457d3c64c880aae799db3c3f, type: 3}
   listVisualizedVectors: []

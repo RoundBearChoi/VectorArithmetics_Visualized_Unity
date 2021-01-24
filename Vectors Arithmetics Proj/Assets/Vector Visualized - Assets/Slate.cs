@@ -13,9 +13,11 @@ namespace Roundbeargames
         [SerializeField] GameObject BackgroundPlanePrefab = null;
         [SerializeField] GameObject BackgroundLinesPrefab = null;
         [SerializeField] GameObject ResultTextPrefab = null;
+        [SerializeField] GameObject TitleTextPrefab = null;
 
         [Header("Debug")]
         [SerializeField] List<VisualizedVector> listVisualizedVectors = new List<VisualizedVector>();
+        TitleText titleText = null;
         ResultText resultText = null;
         LineMover lineMover = null;
         MouseData mouseData = null;
@@ -38,6 +40,14 @@ namespace Roundbeargames
             }
         }
 
+        public TitleText TITLE_TEXT
+        {
+            get
+            {
+                return titleText;
+            }
+        }
+
         public BackgroundPlane BACKGROUND_PLANE
         {
             get
@@ -54,8 +64,10 @@ namespace Roundbeargames
             backgroundPlane = InstantiateComponent<BackgroundPlane>(BackgroundPlanePrefab);
             lineMover = InstantiateComponent<LineMover>(LineMoverPrefab);
             mouseData = InstantiateComponent<MouseData>(MouseDataPrefab);
+            titleText = InstantiateComponent<TitleText>(TitleTextPrefab);
             resultText = InstantiateComponent<ResultText>(ResultTextPrefab);
 
+            titleText.transform.localPosition = (Vector3.left * 2f) + (Vector3.up * 2.5f);
             resultText.transform.localPosition = Vector3.up * 2.5f;
         }
 

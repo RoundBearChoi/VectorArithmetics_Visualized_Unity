@@ -256,7 +256,7 @@ LineRenderer:
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
-    textureMode: 0
+    textureMode: 3
     shadowBias: 0.5
     generateLightingData: 0
   m_UseWorldSpace: 0
@@ -275,7 +275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftArrow: {fileID: 2006428527464847570}
   rightArrow: {fileID: 2006428525362206305}
-  ArrowLength: 0.17
+  ArrowLength: 0.155
 --- !u!1 &2006428527464847569
 GameObject:
   m_ObjectHideFlags: 0
