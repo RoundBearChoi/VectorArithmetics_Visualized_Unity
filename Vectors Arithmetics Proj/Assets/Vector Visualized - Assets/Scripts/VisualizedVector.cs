@@ -13,6 +13,9 @@ namespace Roundbeargames
 
         LineRenderer lineRenderer = null;
         Vector3 endPoint = new Vector3(0f, 0f, 0f);
+        Renderer objRenderer = null;
+        Renderer objRenderer_leftArrow = null;
+        Renderer objRenderer_rightArrow = null;
 
         public void InitVisualizedVector()
         {
@@ -20,6 +23,9 @@ namespace Roundbeargames
 
             lineRenderer = this.gameObject.GetComponent<LineRenderer>();
             slate = this.gameObject.GetComponentInParent<Slate>();
+            objRenderer = this.gameObject.GetComponent<Renderer>();
+            objRenderer_leftArrow = leftArrow.gameObject.GetComponent<Renderer>();
+            objRenderer_rightArrow = rightArrow.gameObject.GetComponent<Renderer>();
         }
 
         public void RenderArrow()
@@ -50,7 +56,7 @@ namespace Roundbeargames
             RotateLine(ref rightArrow, vec, -30f);
         }
 
-        public void SetColor(Color color)
+        public void SetLineColor(Color color)
         {
             lineRenderer.startColor = color;
             leftArrow.startColor = color;
@@ -87,6 +93,18 @@ namespace Roundbeargames
         public LineRenderer GetLineRenderer()
         {
             return lineRenderer;
+        }
+
+        public void SetObjMaterial(Material material, Color color)
+        {
+            objRenderer.material = material;
+            objRenderer.material.color = color;
+
+            objRenderer_leftArrow.material = material;
+            objRenderer_leftArrow.material.color = color;
+
+            objRenderer_rightArrow.material = material;
+            objRenderer_rightArrow.material.color = color;
         }
     }
 }

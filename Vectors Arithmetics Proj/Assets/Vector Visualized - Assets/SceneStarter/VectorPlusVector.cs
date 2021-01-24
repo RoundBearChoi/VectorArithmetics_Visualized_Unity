@@ -69,11 +69,11 @@ namespace Roundbeargames
             Vector2 resultVec = listSlates[0].GetVector(0) + listSlates[1].GetVector(0);
             listSlates[2].LINE_MOVER.ManualSetLine(2, 1, resultVec);
 
-            SetLineColor(listSlates[0], 0, ColorA);
-            SetLineColor(listSlates[1], 0, ColorB);
-            SetLineColor(listSlates[2], 0, ColorA);
-            SetLineColor(listSlates[2], 1, ColorB);
-            SetLineColor(listSlates[2], 2, ColorC);
+            SetLineMaterial(listSlates[0], 0, FilledLineMaterial, ColorA);
+            SetLineMaterial(listSlates[1], 0, FilledLineMaterial, ColorB);
+            SetLineMaterial(listSlates[2], 0, DottedLineMaterial_A, ColorA);
+            SetLineMaterial(listSlates[2], 1, DottedLineMaterial_B, ColorB);
+            SetLineMaterial(listSlates[2], 2, FilledLineMaterial, ColorC);
 
             listSlates[2].RESULT_TEXT.SetText(resultVec);
 
@@ -82,13 +82,14 @@ namespace Roundbeargames
             listSlates[2].TITLE_TEXT.SetTitle("A + B");
         }
 
-        void SetLineColor(Slate slate, int vectorIndex, Color color)
+        void SetLineMaterial(Slate slate, int vectorIndex, Material material, Color color)
         {
             VisualizedVector targetVec = slate.GetVisualizedVector(vectorIndex);
 
             if (targetVec != null)
             {
-                targetVec.SetColor(color);
+                targetVec.SetLineColor(color);
+                targetVec.SetObjMaterial(material, color);
             }
         }
     }
