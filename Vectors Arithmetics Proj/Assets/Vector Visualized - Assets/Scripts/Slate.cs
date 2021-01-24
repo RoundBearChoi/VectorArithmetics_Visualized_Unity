@@ -69,6 +69,7 @@ namespace Roundbeargames
 
             titleText.transform.localPosition = (Vector3.left * 2f) + (Vector3.up * 2.5f);
             resultText.transform.localPosition = Vector3.up * 2.5f;
+            backgroundLines.transform.localPosition = Vector3.forward * 3f;
         }
 
         public void CreateVisualizedVector()
@@ -82,16 +83,19 @@ namespace Roundbeargames
             return Instantiate(prefab, this.transform).GetComponent<T>();
         }
 
-        public void UpdateVector()
+        public void UpdateLine()
         {
-            foreach(VisualizedVector v in listVisualizedVectors)
-            {
-                v.RenderArrow();
-            }
-
             mouseData.UpdateData();
             lineMover.UpdateOnMouse(0);
             resultText.UpdateText(0);
+        }
+
+        public void UpdateArrows()
+        {
+            foreach (VisualizedVector v in listVisualizedVectors)
+            {
+                v.RenderArrow();
+            }
         }
 
         public Vector2 GetVector(int index)
@@ -104,12 +108,6 @@ namespace Roundbeargames
             {
                 return Vector2.zero;
             }
-        }
-
-        public void SetBackgroundPlane(Vector3 localPosition, Vector3 localRotation)
-        {
-            backgroundPlane.transform.localPosition = localPosition;
-            backgroundPlane.transform.localRotation = Quaternion.Euler(localRotation);
         }
 
         public VisualizedVector GetVisualizedVector(int index)

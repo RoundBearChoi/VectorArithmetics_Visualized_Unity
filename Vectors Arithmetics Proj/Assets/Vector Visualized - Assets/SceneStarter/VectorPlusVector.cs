@@ -29,7 +29,6 @@ namespace Roundbeargames
             foreach (Slate s in listSlates)
             {
                 s.CreateCommonComponents();
-                s.SetBackgroundPlane(new Vector3(0f, 0f, 5f), new Vector3(-90f, 0f, 0f));
             }
 
             listSlates[0].transform.position = new Vector3(-3f - 1f, 1.3f, 0f);
@@ -46,17 +45,28 @@ namespace Roundbeargames
             listSlates[1].BACKGROUND_PLANE.transform.localScale = new Vector3(0.45f, 1f, 0.425f);
             listSlates[2].BACKGROUND_PLANE.transform.localScale = new Vector3(0.45f, 1f, 0.425f);
 
-            listSlates[0].BACKGROUND_PLANE.transform.localPosition = new Vector3(0.925f, 0.95f, 3f);
-            listSlates[1].BACKGROUND_PLANE.transform.localPosition = new Vector3(0.925f, 0.95f, 3f);
-            listSlates[2].BACKGROUND_PLANE.transform.localPosition = new Vector3(0.925f, 0.95f, 3f);
+            listSlates[0].BACKGROUND_PLANE.transform.localPosition = new Vector3(0.925f, 0.95f, 8f);
+            listSlates[1].BACKGROUND_PLANE.transform.localPosition = new Vector3(0.925f, 0.95f, 8f);
+            listSlates[2].BACKGROUND_PLANE.transform.localPosition = new Vector3(0.925f, 0.95f, 8f);
+
+            listSlates[0].BACKGROUND_PLANE.transform.localRotation = Quaternion.Euler(new Vector3(-90f, 0f, 0f));
+            listSlates[1].BACKGROUND_PLANE.transform.localRotation = Quaternion.Euler(new Vector3(-90f, 0f, 0f));
+            listSlates[2].BACKGROUND_PLANE.transform.localRotation = Quaternion.Euler(new Vector3(-90f, 0f, 0f));
+
+            listSlates[2].GetVisualizedVector(0).DeleteArrows();
+            listSlates[2].GetVisualizedVector(1).DeleteArrows();
         }
 
         private void Update()
         {
             foreach(Slate s in listSlates)
             {
-                s.UpdateVector();
+                s.UpdateLine();
             }
+
+            listSlates[0].UpdateArrows();
+            listSlates[1].UpdateArrows();
+            listSlates[2].UpdateArrows();
 
             // result: vector A
             listSlates[2].LINE_MOVER.ManualSetLine(0, 1, listSlates[0].GetVector(0));

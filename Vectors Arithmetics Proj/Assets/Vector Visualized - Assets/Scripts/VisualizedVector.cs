@@ -23,9 +23,18 @@ namespace Roundbeargames
 
             lineRenderer = this.gameObject.GetComponent<LineRenderer>();
             slate = this.gameObject.GetComponentInParent<Slate>();
+
             objRenderer = this.gameObject.GetComponent<Renderer>();
-            objRenderer_leftArrow = leftArrow.gameObject.GetComponent<Renderer>();
-            objRenderer_rightArrow = rightArrow.gameObject.GetComponent<Renderer>();
+
+            if (leftArrow != null)
+            {
+                objRenderer_leftArrow = leftArrow.gameObject.GetComponent<Renderer>();
+            }
+
+            if (rightArrow != null)
+            {
+                objRenderer_rightArrow = rightArrow.gameObject.GetComponent<Renderer>();
+            }
         }
 
         public void RenderArrow()
@@ -47,24 +56,44 @@ namespace Roundbeargames
             Vector3 scale = this.transform.root.transform.localScale;
             Vector3 scaledEndPoint = new Vector3(endPoint.x * scale.x, endPoint.y * scale.y, 0f);
 
-            leftArrow.transform.position = this.transform.position + scaledEndPoint;
-            rightArrow.transform.position = this.transform.position + scaledEndPoint;
-
             Vector2 vec = lineRenderer.GetPosition(0) - lineRenderer.GetPosition(1);
 
-            RotateLine(ref leftArrow, vec, 30f);
-            RotateLine(ref rightArrow, vec, -30f);
+            if (leftArrow != null)
+            {
+                leftArrow.transform.position = this.transform.position + scaledEndPoint;
+                RotateLine(ref leftArrow, vec, 30f);
+            }
+            
+            if (rightArrow != null)
+            {
+                rightArrow.transform.position = this.transform.position + scaledEndPoint;
+                RotateLine(ref rightArrow, vec, -30f);
+            }
         }
 
         public void SetLineColor(Color color)
         {
-            lineRenderer.startColor = color;
-            leftArrow.startColor = color;
-            rightArrow.startColor = color;
+            if (lineRenderer == null)
+            {
+                InitVisualizedVector();
+            }
+            else
+            {
+                lineRenderer.startColor = color;
+                lineRenderer.endColor = color;
+                
+                if (leftArrow != null)
+                {
+                    leftArrow.startColor = color;
+                    leftArrow.endColor = color;
+                }
 
-            lineRenderer.endColor = color;
-            leftArrow.endColor = color;
-            rightArrow.endColor = color;
+                if (rightArrow != null)
+                {
+                    rightArrow.startColor = color;
+                    rightArrow.endColor = color;
+                }
+            }
         }
 
         private void RotateLine(ref LineRenderer line, Vector2 direction, float angle)
@@ -100,11 +129,23 @@ namespace Roundbeargames
             objRenderer.material = material;
             objRenderer.material.color = color;
 
-            objRenderer_leftArrow.material = material;
-            objRenderer_leftArrow.material.color = color;
+            if (objRenderer_leftArrow != null)
+            {
+                objRenderer_leftArrow.material = material;
+                objRenderer_leftArrow.material.color = color;
+            }
 
-            objRenderer_rightArrow.material = material;
-            objRenderer_rightArrow.material.color = color;
+            if (objRenderer_rightArrow != null)
+            {
+                objRenderer_rightArrow.material = material;
+                objRenderer_rightArrow.material.color = color;
+            }
+        }
+
+        public void DeleteArrows()
+        {
+            Destroy(leftArrow.gameObject);
+            Destroy(rightArrow.gameObject);
         }
     }
 }
