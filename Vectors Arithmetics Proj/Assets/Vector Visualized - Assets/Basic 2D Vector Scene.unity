@@ -156,11 +156,11 @@ MonoBehaviour:
   listSlates: []
   ColorA: {r: 0, g: 1, b: 0, a: 1}
   ColorB: {r: 0.40161723, g: 0.40161723, b: 1, a: 1}
-  ColorC: {r: 1, g: 0.31671154, b: 0.31671154, a: 1}
+  ColorC: {r: 1, g: 0.52425873, b: 0.52425873, a: 1}
   FilledLineMaterial: {fileID: 2100000, guid: a4fa58c1aaa1c724fb455abf1817374e, type: 2}
   DottedLineMaterial_A: {fileID: 2100000, guid: d705f8c8300dcd54b9a91e5d1191279e, type: 2}
   DottedLineMaterial_B: {fileID: 2100000, guid: d2a0db0a33654c240a5ca9e14e36f298, type: 2}
-  ReverseEquation: 0
+  equationIsReversed: 0
 --- !u!4 &752101842
 Transform:
   m_ObjectHideFlags: 0

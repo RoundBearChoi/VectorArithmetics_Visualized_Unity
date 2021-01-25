@@ -91,6 +91,10 @@ namespace Roundbeargames
 
                 // show result in text
                 listSlates[2].RESULT_TEXT.SetText(resultVec);
+
+                // show result red dot
+                Vector3 v3convert = new Vector3(resultVec.x, resultVec.y, 2f);
+                listSlates[2].MOUSE_DATA.SetRedDotPosition(listSlates[2].transform.position + v3convert);
             }
             else
             {
@@ -108,6 +112,10 @@ namespace Roundbeargames
 
                 // show result in text
                 listSlates[2].RESULT_TEXT.SetText(resultVec);
+
+                // show result red dot
+                Vector3 v3convert = new Vector3(resultVec.x, resultVec.y, 2f);
+                listSlates[2].MOUSE_DATA.SetRedDotPosition(listSlates[2].transform.position + v3convert);
             }
 
             SetLineMaterial(listSlates[0], 0, FilledLineMaterial, ColorA);
@@ -115,8 +123,6 @@ namespace Roundbeargames
             SetLineMaterial(listSlates[2], 0, DottedLineMaterial_A, ColorA);
             SetLineMaterial(listSlates[2], 1, DottedLineMaterial_B, ColorB);
             SetLineMaterial(listSlates[2], 2, FilledLineMaterial, ColorC);
-
-            
 
             listSlates[0].TITLE_TEXT.SetTitle("A");
             listSlates[1].TITLE_TEXT.SetTitle("B");

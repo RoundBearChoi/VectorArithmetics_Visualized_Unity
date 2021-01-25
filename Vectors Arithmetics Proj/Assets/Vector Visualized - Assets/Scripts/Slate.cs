@@ -56,6 +56,14 @@ namespace Roundbeargames
             }
         }
 
+        public MouseData MOUSE_DATA
+        {
+            get
+            {
+                return mouseData;
+            }
+        }
+
         public void CreateCommonComponents()
         {
             listVisualizedVectors.Clear();
