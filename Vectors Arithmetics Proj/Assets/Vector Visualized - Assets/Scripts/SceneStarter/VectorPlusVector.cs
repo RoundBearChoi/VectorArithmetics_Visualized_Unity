@@ -15,7 +15,7 @@ namespace Roundbeargames
         [SerializeField] Material DottedLineMaterial_B = null;
                 
         [Header("Debug")]
-        [SerializeField] bool ReverseEquation = false;
+        [SerializeField] bool equationIsReversed = false;
 
         ReverseImage reverseImage = null;
 
@@ -75,16 +75,40 @@ namespace Roundbeargames
             listSlates[1].UpdateArrows();
             listSlates[2].UpdateArrows();
 
-            // result: vector A
-            listSlates[2].LINE_MOVER.ManualSetLine(0, 1, listSlates[0].GetVector(0));
+            if (!equationIsReversed)
+            {
+                // result: vector A
+                listSlates[2].LINE_MOVER.ManualSetLine(0, 0, Vector3.zero);
+                listSlates[2].LINE_MOVER.ManualSetLine(0, 1, listSlates[0].GetVector(0));
 
-            // result: vector B
-            listSlates[2].LINE_MOVER.ManualSetLine(1, 0, listSlates[0].GetVector(0));
-            listSlates[2].LINE_MOVER.ManualSetLine(1, 1, listSlates[0].GetVector(0) + listSlates[1].GetVector(0));
+                // result: vector B
+                listSlates[2].LINE_MOVER.ManualSetLine(1, 0, listSlates[0].GetVector(0));
+                listSlates[2].LINE_MOVER.ManualSetLine(1, 1, listSlates[0].GetVector(0) + listSlates[1].GetVector(0));
 
-            // result: vector C
-            Vector2 resultVec = listSlates[0].GetVector(0) + listSlates[1].GetVector(0);
-            listSlates[2].LINE_MOVER.ManualSetLine(2, 1, resultVec);
+                // result: vector C
+                Vector2 resultVec = listSlates[0].GetVector(0) + listSlates[1].GetVector(0);
+                listSlates[2].LINE_MOVER.ManualSetLine(2, 1, resultVec);
+
+                // show result in text
+                listSlates[2].RESULT_TEXT.SetText(resultVec);
+            }
+            else
+            {
+                // result: vector B
+                listSlates[2].LINE_MOVER.ManualSetLine(1, 0, Vector3.zero);
+                listSlates[2].LINE_MOVER.ManualSetLine(1, 1, listSlates[1].GetVector(0));
+
+                // result: vector A
+                listSlates[2].LINE_MOVER.ManualSetLine(0, 0, listSlates[1].GetVector(0));
+                listSlates[2].LINE_MOVER.ManualSetLine(0, 1, listSlates[1].GetVector(0) + listSlates[0].GetVector(0));
+
+                // result: vector C
+                Vector2 resultVec = listSlates[0].GetVector(0) + listSlates[1].GetVector(0);
+                listSlates[2].LINE_MOVER.ManualSetLine(2, 1, resultVec);
+
+                // show result in text
+                listSlates[2].RESULT_TEXT.SetText(resultVec);
+            }
 
             SetLineMaterial(listSlates[0], 0, FilledLineMaterial, ColorA);
             SetLineMaterial(listSlates[1], 0, FilledLineMaterial, ColorB);
@@ -92,12 +116,12 @@ namespace Roundbeargames
             SetLineMaterial(listSlates[2], 1, DottedLineMaterial_B, ColorB);
             SetLineMaterial(listSlates[2], 2, FilledLineMaterial, ColorC);
 
-            listSlates[2].RESULT_TEXT.SetText(resultVec);
+            
 
             listSlates[0].TITLE_TEXT.SetTitle("A");
             listSlates[1].TITLE_TEXT.SetTitle("B");
 
-            if (ReverseEquation)
+            if (equationIsReversed)
             {
                 listSlates[2].TITLE_TEXT.SetTitle("B + A");
             }
@@ -106,7 +130,7 @@ namespace Roundbeargames
                 listSlates[2].TITLE_TEXT.SetTitle("A + B");
             }
 
-            reverseImage.UpdateClick(ref ReverseEquation);
+            reverseImage.UpdateClick(ref equationIsReversed);
         }
 
         void SetLineMaterial(Slate slate, int vectorIndex, Material material, Color color)
