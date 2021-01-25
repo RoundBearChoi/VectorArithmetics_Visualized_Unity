@@ -32,20 +32,17 @@ namespace Roundbeargames
 
         void RunMouseUpdate()
         {
-            if (Input.GetKey(KeyCode.Mouse0))
-            {
-                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-                if (Physics.Raycast(ray, out hit))
-                {
-                    if (hit.transform.root == this.transform.root)
-                    {
-                        clickedMousePosition = hit.point;
-                        redDot.position = new Vector3(hit.point.x, hit.point.y, this.transform.position.z + 2f);
+            RaycastHit hit = MouseClick.GetClickHit(cam);
 
-                        clickedPlane = hit.transform.gameObject;
-                        mouseIsClicked = true;
-                    }
+            if (hit.transform != null)
+            {
+                if (hit.transform.root == this.transform.root)
+                {
+                    clickedMousePosition = hit.point;
+                    redDot.position = new Vector3(hit.point.x, hit.point.y, this.transform.position.z + 2f);
+
+                    clickedPlane = hit.transform.gameObject;
+                    mouseIsClicked = true;
                 }
             }
         }
