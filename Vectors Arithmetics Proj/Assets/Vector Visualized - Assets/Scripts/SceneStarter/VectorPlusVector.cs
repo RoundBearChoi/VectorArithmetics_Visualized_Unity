@@ -6,15 +6,22 @@ namespace Roundbeargames
 {
     public class VectorPlusVector : SceneStarter
     {
+        [Header("Setup")]
         [SerializeField] Color ColorA = new Color();
         [SerializeField] Color ColorB = new Color();
         [SerializeField] Color ColorC = new Color();
         [SerializeField] Material FilledLineMaterial = null;
         [SerializeField] Material DottedLineMaterial_A = null;
         [SerializeField] Material DottedLineMaterial_B = null;
+                
+        [Header("Debug")]
+        [SerializeField] bool ReverseEquation = false;
+
+        ReverseImage reverseImage = null;
 
         private void Start()
         {
+            reverseImage = this.gameObject.GetComponentInChildren<ReverseImage>();
             StartScene();
         }
 
@@ -89,7 +96,17 @@ namespace Roundbeargames
 
             listSlates[0].TITLE_TEXT.SetTitle("A");
             listSlates[1].TITLE_TEXT.SetTitle("B");
-            listSlates[2].TITLE_TEXT.SetTitle("A + B");
+
+            if (ReverseEquation)
+            {
+                listSlates[2].TITLE_TEXT.SetTitle("B + A");
+            }
+            else
+            {
+                listSlates[2].TITLE_TEXT.SetTitle("A + B");
+            }
+
+            reverseImage.UpdateClick(ref ReverseEquation);
         }
 
         void SetLineMaterial(Slate slate, int vectorIndex, Material material, Color color)

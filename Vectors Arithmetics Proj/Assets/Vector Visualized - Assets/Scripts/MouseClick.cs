@@ -19,5 +19,19 @@ namespace Roundbeargames
 
             return hit;
         }
+
+        public static RaycastHit GetMouseUpHit(Camera cam)
+        {
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit = new RaycastHit();
+            hit.point = Vector3.zero;
+
+            if (Input.GetKeyUp(KeyCode.Mouse0))
+            {
+                Physics.Raycast(ray, out hit);
+            }
+
+            return hit;
+        }
     }
 }
