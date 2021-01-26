@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Roundbeargames
 {
-    public class VectorPlusVector : SceneStarter
+    public class VectorMinusVector : SceneStarter
     {
         [Header("Setup")]
         [SerializeField] Color ColorA = new Color();
@@ -82,39 +82,41 @@ namespace Roundbeargames
                 listSlates[2].LINE_MOVER.ManualSetLine(0, 1, listSlates[0].GetVector(0));
 
                 // result: vector B
-                listSlates[2].LINE_MOVER.ManualSetLine(1, 0, listSlates[0].GetVector(0));
-                listSlates[2].LINE_MOVER.ManualSetLine(1, 1, listSlates[0].GetVector(0) + listSlates[1].GetVector(0));
+                listSlates[2].LINE_MOVER.ManualSetLine(1, 0, Vector3.zero);
+                listSlates[2].LINE_MOVER.ManualSetLine(1, 1, listSlates[1].GetVector(0));
 
-                // result: A + B
-                Vector2 resultVec = listSlates[0].GetVector(0) + listSlates[1].GetVector(0);
-                listSlates[2].LINE_MOVER.ManualSetLine(2, 1, resultVec);
+                // result: A - B
+                Vector2 resultVec = listSlates[0].GetVector(0) - listSlates[1].GetVector(0);
+                listSlates[2].LINE_MOVER.ManualSetLine(2, 0, listSlates[1].GetVector(0));
+                listSlates[2].LINE_MOVER.ManualSetLine(2, 1, listSlates[0].GetVector(0));
 
                 // show result in text
                 listSlates[2].RESULT_TEXT.SetText(resultVec);
 
                 // show result red dot
-                Vector3 v3convert = new Vector3(resultVec.x, resultVec.y, 2f);
+                Vector3 v3convert = new Vector3(listSlates[0].GetVector(0).x, listSlates[0].GetVector(0).y, 2f);
                 listSlates[2].MOUSE_DATA.SetRedDotPosition(listSlates[2].transform.position + v3convert);
             }
             else
             {
+                // result: vector A
+                listSlates[2].LINE_MOVER.ManualSetLine(0, 0, Vector3.zero);
+                listSlates[2].LINE_MOVER.ManualSetLine(0, 1, listSlates[0].GetVector(0));
+
                 // result: vector B
                 listSlates[2].LINE_MOVER.ManualSetLine(1, 0, Vector3.zero);
                 listSlates[2].LINE_MOVER.ManualSetLine(1, 1, listSlates[1].GetVector(0));
 
-                // result: vector A
-                listSlates[2].LINE_MOVER.ManualSetLine(0, 0, listSlates[1].GetVector(0));
-                listSlates[2].LINE_MOVER.ManualSetLine(0, 1, listSlates[1].GetVector(0) + listSlates[0].GetVector(0));
-
-                // result: B + A
-                Vector2 resultVec = listSlates[0].GetVector(0) + listSlates[1].GetVector(0);
-                listSlates[2].LINE_MOVER.ManualSetLine(2, 1, resultVec);
+                // result: B - A
+                Vector2 resultVec = listSlates[1].GetVector(0) - listSlates[0].GetVector(0);
+                listSlates[2].LINE_MOVER.ManualSetLine(2, 1, listSlates[1].GetVector(0));
+                listSlates[2].LINE_MOVER.ManualSetLine(2, 0, listSlates[0].GetVector(0));
 
                 // show result in text
                 listSlates[2].RESULT_TEXT.SetText(resultVec);
 
                 // show result red dot
-                Vector3 v3convert = new Vector3(resultVec.x, resultVec.y, 2f);
+                Vector3 v3convert = new Vector3(listSlates[1].GetVector(0).x, listSlates[1].GetVector(0).y, 2f);
                 listSlates[2].MOUSE_DATA.SetRedDotPosition(listSlates[2].transform.position + v3convert);
             }
 

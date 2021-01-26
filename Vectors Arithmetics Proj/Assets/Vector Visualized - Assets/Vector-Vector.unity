@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 752101842}
   - component: {fileID: 752101841}
   m_Layer: 0
-  m_Name: SceneStarter
+  m_Name: SceneStarter_Minus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -149,14 +149,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 752101840}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b011b6b20c737349ae9f2151af2379d, type: 3}
+  m_Script: {fileID: 11500000, guid: a97be3fb33aee3e47933564da3a7dc17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VectorPlanePrefab: {fileID: 6644992088181616525, guid: d759c8ce564bfb249b867c2cf8f75f4e, type: 3}
+  SlatePrefab: {fileID: 6644992088181616525, guid: d759c8ce564bfb249b867c2cf8f75f4e, type: 3}
   listSlates: []
-  ColorA: {r: 0, g: 1, b: 0, a: 1}
-  ColorB: {r: 0.40161723, g: 0.40161723, b: 1, a: 1}
-  ColorC: {r: 1, g: 0.52425873, b: 0.52425873, a: 1}
+  ColorA: {r: 0.99083704, g: 1, b: 0.56199455, a: 1}
+  ColorB: {r: 0.4393531, g: 0.7102736, b: 1, a: 1}
+  ColorC: {r: 1, g: 1, b: 1, a: 1}
   FilledLineMaterial: {fileID: 2100000, guid: a4fa58c1aaa1c724fb455abf1817374e, type: 2}
   DottedLineMaterial_A: {fileID: 2100000, guid: d705f8c8300dcd54b9a91e5d1191279e, type: 2}
   DottedLineMaterial_B: {fileID: 2100000, guid: d2a0db0a33654c240a5ca9e14e36f298, type: 2}
