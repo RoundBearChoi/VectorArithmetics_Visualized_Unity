@@ -12,8 +12,12 @@ namespace Roundbeargames
         [SerializeField] Material FilledLineMaterial = null;
         [SerializeField] Material DottedLineMaterial = null;
 
+        ScalarValue scalarValue = null;
+
         private void Start()
         {
+            scalarValue = FindObjectOfType<ScalarValue>();
+
             StartScene();
         }
 
@@ -46,6 +50,11 @@ namespace Roundbeargames
             listSlates[1].BACKGROUND_PLANE.transform.localRotation = Quaternion.Euler(new Vector3(-90f, 0f, 0f));
         }
 
+        public Slate GetSlate(int index)
+        {
+            return listSlates[index];
+        }
+
         private void Update()
         {
             foreach(Slate s in listSlates)
@@ -60,11 +69,8 @@ namespace Roundbeargames
             listSlates[1].LINE_MOVER.ManualSetLine(0, 0, Vector3.zero);
             listSlates[1].LINE_MOVER.ManualSetLine(0, 1, listSlates[0].GetVector(0));
 
-            // scalar
-            float scalar = 1.2f;
-
             // result: A * scalar
-            Vector2 resultVec = listSlates[0].GetVector(0) * scalar;
+            Vector2 resultVec = listSlates[0].GetVector(0) * scalarValue.GetValue();
             listSlates[1].LINE_MOVER.ManualSetLine(1, 0, Vector3.zero);
             listSlates[1].LINE_MOVER.ManualSetLine(1, 1, resultVec);
 
