@@ -75,6 +75,10 @@ namespace Roundbeargames
             listSlates[1].UpdateArrows();
             listSlates[2].UpdateArrows();
 
+            listSlates[0].TITLE_TEXT.transform.localPosition = (Vector3.left * 2f) + (Vector3.up * 2.5f);
+            listSlates[1].TITLE_TEXT.transform.localPosition = (Vector3.left * 2f) + (Vector3.up * 2.5f);
+            listSlates[2].TITLE_TEXT.transform.localPosition = (Vector3.left * 2f) + (Vector3.up * 2.5f);
+
             if (!equationIsReversed)
             {
                 // result: vector A

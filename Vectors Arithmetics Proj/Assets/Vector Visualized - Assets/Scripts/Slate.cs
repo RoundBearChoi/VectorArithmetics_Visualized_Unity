@@ -75,7 +75,7 @@ namespace Roundbeargames
             titleText = InstantiateComponent<TitleText>(TitleTextPrefab);
             resultText = InstantiateComponent<ResultText>(ResultTextPrefab);
 
-            titleText.transform.localPosition = (Vector3.left * 2f) + (Vector3.up * 2.5f);
+            //titleText.transform.localPosition = (Vector3.left * 2f) + (Vector3.up * 2.5f);
             resultText.transform.localPosition = Vector3.up * 2.5f;
             backgroundLines.transform.localPosition = Vector3.forward * 3f;
         }
