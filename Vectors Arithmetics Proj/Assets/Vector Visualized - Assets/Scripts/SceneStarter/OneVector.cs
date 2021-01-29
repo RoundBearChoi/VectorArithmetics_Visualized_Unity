@@ -26,7 +26,8 @@ namespace Roundbeargames
                 s.CreateCommonComponents();
             }
 
-            listSlates[0].transform.position = new Vector3(-3f - 1f, 1.3f, 0f);
+            listSlates[0].transform.position = new Vector3(-1.39f, -2f, 0f);
+            listSlates[0].transform.localScale = new Vector3(2f, 2f, 1f);
             listSlates[0].CreateVisualizedVector();
             listSlates[0].BACKGROUND_PLANE.transform.localScale = new Vector3(0.45f, 1f, 0.425f);
             listSlates[0].BACKGROUND_PLANE.transform.localPosition = new Vector3(0.925f, 0.95f, 8f);
@@ -46,7 +47,7 @@ namespace Roundbeargames
 
             SetLineMaterial(listSlates[0], 0, FilledLineMaterial, ColorA);
 
-            listSlates[0].TITLE_TEXT.SetTitle("A");
+            listSlates[0].TITLE_TEXT.SetTitle(string.Empty);
         }
 
         void SetLineMaterial(Slate slate, int vectorIndex, Material material, Color color)
