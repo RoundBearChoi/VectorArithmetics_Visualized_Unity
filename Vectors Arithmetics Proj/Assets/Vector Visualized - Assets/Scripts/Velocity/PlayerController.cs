@@ -21,6 +21,7 @@ namespace Roundbeargames
         [SerializeField] Slider MaxPositionSlider = null;
         [SerializeField] Slider SlowDownSpeedSlider = null;
         [SerializeField] RectTransform BackgroundCircle = null;
+        [SerializeField] List<GameObject> listKeyHighlights = new List<GameObject>();
 
         [Header("Debug")]
         [SerializeField] Vector3 Velocity = new Vector3();
@@ -50,21 +51,41 @@ namespace Roundbeargames
             if (Input.GetKey(KeyCode.W))
             {
                 Acceleration += new Vector3(0f, AccelerationMagnitude, 0f);
+                listKeyHighlights[0].SetActive(true);
+            }
+            else
+            {
+                listKeyHighlights[0].SetActive(false);
             }
 
             if (Input.GetKey(KeyCode.A))
             {
                 Acceleration -= new Vector3(AccelerationMagnitude, 0f, 0f);
+                listKeyHighlights[1].SetActive(true);
+            }
+            else
+            {
+                listKeyHighlights[1].SetActive(false);
             }
 
             if (Input.GetKey(KeyCode.S))
             {
                 Acceleration -= new Vector3(0f, AccelerationMagnitude, 0f);
+                listKeyHighlights[2].SetActive(true);
+            }
+            else
+            {
+                listKeyHighlights[2].SetActive(false);
             }
 
             if (Input.GetKey(KeyCode.D))
             {
                 Acceleration += new Vector3(AccelerationMagnitude, 0f, 0f);
+                listKeyHighlights[3].SetActive(true);
+            }
+            else
+            {
+                listKeyHighlights[3].SetActive(false);
             }
 
             ClampVector(ref Acceleration, MaxAcceleration);
