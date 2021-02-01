@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Vector Visualized - Assets/Vector+Vector.unity
-    guid: db9f66a4ae77f924ba7859a8f2ee6963
+    path: Assets/Vector Visualized - Assets/Vector-Vector.unity
+    guid: 607cdc445183b7c48b0fd8672ad0f4ac
   m_configObjects: {}

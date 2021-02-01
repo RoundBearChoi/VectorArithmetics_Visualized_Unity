@@ -135,11 +135,11 @@ namespace Roundbeargames
 
             if (equationIsReversed)
             {
-                listSlates[2].TITLE_TEXT.SetTitle("B + A");
+                listSlates[2].TITLE_TEXT.SetTitle("B - A");
             }
             else
             {
-                listSlates[2].TITLE_TEXT.SetTitle("A + B");
+                listSlates[2].TITLE_TEXT.SetTitle("A - B");
             }
 
             reverseImage.UpdateClick(ref equationIsReversed);
