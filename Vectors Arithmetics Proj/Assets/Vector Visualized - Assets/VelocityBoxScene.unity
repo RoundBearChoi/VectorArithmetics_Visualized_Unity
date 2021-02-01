@@ -297,6 +297,7 @@ MonoBehaviour:
   AccelerationMagnitudeSlider: {fileID: 972956929}
   MaxPositionSlider: {fileID: 1337810504}
   SlowDownSpeedSlider: {fileID: 1629777548}
+  BackgroundCircle: {fileID: 275841659}
   Velocity: {x: 0, y: 0, z: 0}
   Acceleration: {x: 0, y: 0, z: 0}
   PlayerPosition: {x: 0, y: 0, z: 0}

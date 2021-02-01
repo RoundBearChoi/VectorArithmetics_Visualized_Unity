@@ -12,6 +12,7 @@ namespace Roundbeargames
         float AccelerationMagnitude = 0f;
         float MaxPosition = 0f;
         float SlowDownSpeed = 0f;
+        const float ScaleToRadius = 10f / 3.85f; //2.597f;
 
         [Header("Setup")]
         [SerializeField] Slider MaxVelocitySlider = null;
@@ -19,6 +20,7 @@ namespace Roundbeargames
         [SerializeField] Slider AccelerationMagnitudeSlider = null;
         [SerializeField] Slider MaxPositionSlider = null;
         [SerializeField] Slider SlowDownSpeedSlider = null;
+        [SerializeField] RectTransform BackgroundCircle = null;
 
         [Header("Debug")]
         [SerializeField] Vector3 Velocity = new Vector3();
@@ -29,6 +31,7 @@ namespace Roundbeargames
         {
             UpdateStats();
             MovePlayer();
+            UpdateCircle();
         }
 
         void UpdateStats()
@@ -75,6 +78,14 @@ namespace Roundbeargames
 
             Acceleration = Vector3.Lerp(Acceleration, Vector3.zero, SlowDownSpeed * Time.deltaTime);
             Velocity = Vector3.Lerp(Velocity, Vector3.zero, SlowDownSpeed * Time.deltaTime);
+        }
+
+        void UpdateCircle()
+        {
+            BackgroundCircle.localScale = new Vector3(
+                MaxPositionSlider.value * ScaleToRadius,
+                MaxPositionSlider.value * ScaleToRadius,
+                1f);
         }
 
         void ClampVector(ref Vector3 targetVec, float max)
