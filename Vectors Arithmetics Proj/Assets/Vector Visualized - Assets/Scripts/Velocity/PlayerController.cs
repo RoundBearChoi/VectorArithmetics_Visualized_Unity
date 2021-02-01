@@ -49,12 +49,6 @@ namespace Roundbeargames
                 keyIsPressed = true;
             }
 
-            if (!keyIsPressed)
-            {
-                Acceleration = Vector3.Lerp(Acceleration, Vector3.zero, SlowDownSpeed * Time.deltaTime);
-                Velocity = Vector3.Lerp(Velocity, Vector3.zero, SlowDownSpeed * Time.deltaTime);
-            }
-
             ClampVector(ref Acceleration, MaxAcceleration);
             Velocity += (Acceleration * Time.deltaTime);
             
@@ -63,6 +57,9 @@ namespace Roundbeargames
 
             ClampVector(ref PlayerPosition, MaxPosition);
             this.transform.position = PlayerPosition;
+
+            Acceleration = Vector3.Lerp(Acceleration, Vector3.zero, SlowDownSpeed * Time.deltaTime);
+            Velocity = Vector3.Lerp(Velocity, Vector3.zero, SlowDownSpeed * Time.deltaTime);
         }
 
         void ClampVector(ref Vector3 targetVec, float max)
