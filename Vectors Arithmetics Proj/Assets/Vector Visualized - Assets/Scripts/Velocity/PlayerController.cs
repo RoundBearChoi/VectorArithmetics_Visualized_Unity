@@ -97,8 +97,11 @@ namespace Roundbeargames
             ClampVector(ref PlayerPosition, MaxPosition);
             this.transform.position = PlayerPosition;
 
-            Acceleration = Vector3.Lerp(Acceleration, Vector3.zero, SlowDownSpeed * Time.deltaTime);
-            Velocity = Vector3.Lerp(Velocity, Vector3.zero, SlowDownSpeed * Time.deltaTime);
+            if (Acceleration == Vector3.zero || Vector3.Dot(Acceleration, Velocity) < 0f)
+            {
+                Acceleration = Vector3.Lerp(Acceleration, Vector3.zero, SlowDownSpeed * Time.deltaTime);
+                Velocity = Vector3.Lerp(Velocity, Vector3.zero, SlowDownSpeed * Time.deltaTime);
+            }
         }
 
         void UpdateCircle()
